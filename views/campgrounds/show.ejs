@@ -1,16 +1,23 @@
 <% layout('layouts/boilerplate')%>
 <link rel="stylesheet" href="/stylesheets/stars.css">
+
+
+    
+
 <div class="row">
     <div class="col-6">
-        <div id="campgroundCarousel" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
+        <div id="map" style="width:500px; height:300px"></div>
+        
+        <div id="campgroundCarousel" class="carousel slide mb-auto" data-ride="carousel" style= "height:325px; border: 2px solid black ">
+           
+            <div class="carousel-inner" style="border: 2px solid red ; "" >
                 <% campground.images.forEach((img, i) => {  %>
-                <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
-                    <img src="<%= img.url%>" class="d-block w-100" alt="">
+                <div class="carousel-item  <%= i === 0 ? 'active' : ''%>" >
+                    <img src="<%= img.url%>" class="d-block w-100 " alt="" style="padding:0%; height:325px">
                 </div>
                 <% }) %>
-
             </div>
+        
             <% if(campground.images.length > 1) {%>
             <a class="carousel-control-prev" href="#campgroundCarousel" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -49,8 +56,8 @@
                 2 days ago
             </div>
         </div>
-
     </div>
+    
     <div class="col-6">
         <% if(currentUser) {%>
         <h2>Leave a Review</h2>
@@ -101,4 +108,12 @@
         </div>
         <% } %>
     </div>
+    
 </div>
+
+    <script>
+    const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+    const campground = <%-JSON.stringify(campground) %>
+</script>
+
+<script src="/javascripts/showPageMap.js"></script>

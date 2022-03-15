@@ -1,14 +1,19 @@
-<%layout('layouts/boilerplate')%>
-    <h1>All Campgrounds</h1>
-    <dir>
-        <a href="/campgrounds/new">Add Campgrounds</a>
-    </dir>
-  
-        <% for(let campground of campgrounds){%>
-             <div class="card mb-3">
+<% layout('layouts/boilerplate')%>
+
+<h1>All Campgrounds</h1>
+<div>
+    <a href="/campgrounds/new">Add Campground</a>
+</div>
+<% for (let campground of campgrounds){%>
+<div class="card" mb-3>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4"> 
+            <%if(campground.images.length) {%>
             <img class="img-fluid" alt="" src="<%=campground.images[0].url%>">
+            <% }else {%>
+            <img class="img-fluid" alt=""
+                src="https://res.cloudinary.com/dt33chdxn/image/upload/v1647167520/YelpCamp/w0rmujpmzkdgnkb2uthb.jpg">
+            <% } %>
         </div>
         <div class="col-md-8">
             <div class="card-body">
@@ -22,7 +27,4 @@
         </div>
     </div>
 </div>
-             
-            <%}%>
- 
-     
+<% }%>
